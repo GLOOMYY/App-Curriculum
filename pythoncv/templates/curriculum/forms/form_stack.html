@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block title %}Ingreso{% endblock %}
+{% comment %} {% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">{% endblock %} {% endcomment %}
+
+{% block content %}
+
+  <h1 class="m-3">Formulario tecnologias</h1>
+  <div class="container">
+    <div class="mb-3">
+      <label for="tecnologia" class="form-label">Nombre de la tecnologia</label>
+      <input type="text" class="form-control" id="tecnologia" name="tecnologia" placeholder="Nombre de la tecnologia">
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary">Agregar</button>
+      <button class="btn btn-warning">Cancelar</button>
+    </div>
+  </div>
+
+{% endblock %}

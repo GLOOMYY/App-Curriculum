@@ -31,7 +31,6 @@ class ProyectosDev(models.Model):
   def __str__(self):
     return f'{self.nombre} {self.link}'
   
-
 class ExperienciaLb(models.Model):
   experiencia = models.BooleanField(default=False)
   empresa = models.CharField(max_length=100)

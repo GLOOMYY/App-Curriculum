@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% block title %}Formulario Estudios{% endblock %}
+
+{% comment %} {% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">{% endblock %} {% endcomment %}
+
+{% block content %}
+
+
+<h1 class="m-3">Formulario Estudios</h1>
+<div class="container">
+  <div class="mb-3">
+    <label for="estudio" class="form-label">Estudio</label>
+    <input type="text" class="form-control" id="estudio" placeholder="Estudio">
+  </div>
+
+  <div class="mb-3">
+    <label for="titulo" class="form-label">Titulo obtenido</label>
+    <input type="text" class="form-control" placeholder="Titulo obtenido">
+  </div>
+
+  <div class="mb-3">
+    <label for="institucion" class="form-label">Institucion</label>
+    <input type="text" class="form-control" placeholder="Institucion">
+  </div>
+
+  <div class="input-group form-check form-switch mb-3">
+    <input type="checkbox" class="form-check-input" role="switch">
+    <label class="form-check-label">En curso</label>
+  </div>
+
+  <div class="mb-3">
+    <label for="creacion" class="form-label">Fecha de creación</label>
+    <input type="date" name="creado en" id="creacion" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <label for="modificacion" class="form-label">Fecha de modificación</label>
+    <input type="date" name="modificado en" id="modificacion" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <button class="btn btn-primary">Agregar</button>
+    <button class="btn btn-warning">Cancelar</button>
+  </div>
+</div>
+
+
+{%endblock %}
