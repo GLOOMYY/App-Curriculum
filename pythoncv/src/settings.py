@@ -66,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processor_user.age_proccesor',
+                'core.context_processor_user.skill_proccesor'
             ],
         },
     },
@@ -133,7 +135,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'assets'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/media/img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/media')
 MEDIA_URL = '/media/'
 
 
@@ -146,4 +148,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 #Login:
-LOGIN_REDIRECT_URL = '/admin'
+LOGIN_REDIRECT_URL = 'curriculum'

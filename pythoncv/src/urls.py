@@ -23,7 +23,9 @@ urlpatterns = [
     path('', include('core.urls')),
     
     #Para el inicio de sesion
-    path('accounts/', include('django.contrib.auth.urls'))
+    path('accounts/', include('django.contrib.auth.urls')),
+    
+    path('curriculum/', include('curriculum.urls'))
 ]
 
 # Para cargar las imagenes estaticas en Desarrollo:
