@@ -3,3 +3,8 @@
   @year:        2023
   @author:      Sebastian Mesa M.
 '''
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
