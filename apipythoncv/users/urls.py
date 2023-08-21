@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from .views import UserViewSet, CreateUserView, ViewUpdateUserView, CreateTokenView
+from .views import UserViewSet, CreateUserView, RetreiveUpdateUserView, CreateTokenView, CreateLinkView, RetrieveUpdateDestroyLinkView, CreateResumeView, RetrieveUpdateDestroyResumeView
 
 # from rest_framework.authtoken.views import obtain_auth_token
 
@@ -17,6 +17,13 @@ router.register(r'usuarios', UserViewSet, basename='usuarios')
 urlpatterns = [
     path('', include(router.urls)),
     path('usuarios/create', CreateUserView.as_view()),
-    path('usuarios/edit', ViewUpdateUserView.as_view()),
+    path('usuarios/edit', RetreiveUpdateUserView.as_view()),
     path('usuarios/login', CreateTokenView.as_view()),
+    
+    path('usuarios/links/create', CreateLinkView.as_view()),
+    path('usuarios/resume/create', CreateResumeView.as_view()),
+    
+    
+    path('usuarios/links/edit', RetrieveUpdateDestroyLinkView.as_view()),
+    path('usuarios/resume/edit', RetrieveUpdateDestroyResumeView.as_view())
 ]

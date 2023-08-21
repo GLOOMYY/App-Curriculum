@@ -51,7 +51,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     # Custom users apps
     'curriculum',
-    'users'
+    #'users',
+    'users.apps.UsersConfig'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -160,13 +161,7 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'users.User'
 
-# REST_FRAMEWORK = {
 
-#     # Use Django's standard `django.contrib.auth` permissions,
-
-#     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
-
-# }
 
 
 

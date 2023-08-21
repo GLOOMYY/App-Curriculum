@@ -1,7 +1,7 @@
 from rest_framework import viewsets, generics, authentication, permissions
 from rest_framework.authtoken.views import ObtainAuthToken
-from .serializers import UserSerializer, AuthTokenSerializers
-from .models import User
+from .serializers import UserSerializer, AuthTokenSerializers, LinkSerializer, ResumeSerializer
+from .models import User, Links, ResumeUser
 
 # Create your views here.
 
@@ -12,13 +12,43 @@ class UserViewSet(viewsets.ModelViewSet):
 class CreateUserView(generics.CreateAPIView):
   serializer_class = UserSerializer
   
-class ViewUpdateUserView(generics.RetrieveUpdateAPIView):
-  serializer_class = UserSerializer
+class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    authentication_classes = [authentication.TokenAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    # Obtenemos el usuario logueado
+    def get_object(self):
+        return self.request.user
+      
+      
+class CreateTokenView(ObtainAuthToken):
+  serializer_class = AuthTokenSerializers
+  
+class DeleteUserView(generics.RetrieveUpdateAPIView):
+  pass
+
+#-------- Las demas vistas ---------------
+
+class CreateLinkView(generics.CreateAPIView):
+  serializer_class = LinkSerializer
   authentication_class = [authentication.TokenAuthentication]
   permission_classes = [permissions.IsAuthenticated]
   
-  def get_object(self):
-    return self.request.user
+class RetrieveUpdateDestroyLinkView(generics.RetrieveUpdateDestroyAPIView):
+  # Arreglar el edit usando foreing key
+  serializer_class = LinkSerializer
+  authentication_class = [authentication.TokenAuthentication]
+  permission_classes = [permissions.IsAuthenticated]
   
-class CreateTokenView(ObtainAuthToken):
-  serializer_class = AuthTokenSerializers
+  
+  
+class CreateResumeView(generics.CreateAPIView):
+  serializer_class = ResumeSerializer
+  authentication_class = [authentication.TokenAuthentication]
+  permission_classes = [permissions.IsAuthenticated]
+  
+class RetrieveUpdateDestroyResumeView(generics.RetrieveUpdateDestroyAPIView):
+  serializer_class = ResumeSerializer
+  authentication_class = [authentication.TokenAuthentication]
+  permission_classes = [permissions.IsAuthenticated]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, Links, ResumeUser
 from django.contrib.auth import authenticate, get_user_model
 
 
@@ -26,6 +26,19 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         
         return user
+
+
+    # Borrar borrado logico
+    def deleteUser(self, instance, validated_data):
+        password = validated_data.pop(None)
+        user = super().update(instance, validated_data)
+        
+        if password:
+            user.set_password(password)
+            user.save()
+            
+    def delete(self, instance, validated_data):
+        pass
     
 class AuthTokenSerializers(serializers.Serializer):
     email = serializers.EmailField()
@@ -49,3 +62,34 @@ class AuthTokenSerializers(serializers.Serializer):
         attrs['user'] = user
         
         return attrs
+    
+    
+    
+#------------------Los demas modelos------------------------
+
+class LinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Links
+        fields = '__all__'
+    
+    def createLink(self, validated_data):
+        link = Links.objects.create(validated_data)
+        return link
+    
+    def updateLink(self, instance, validated_data):
+        link = Links.update(instance, validated_data)
+        return link
+        
+class ResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ResumeUser
+        fields = '__all__'
+    
+    def createResume(self, validated_data):
+        resume = ResumeUser.objects.create(validated_data)
+        return resume
+    
+    def updateResume(self, instance, validated_data):
+        resume = ResumeUser.update(instance, validated_data)
+        return resume
+        
