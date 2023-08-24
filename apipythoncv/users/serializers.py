@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import User, Links, ResumeUser
 from django.contrib.auth import authenticate, get_user_model
-
+from django.contrib.auth.hashers import make_password
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -26,6 +26,10 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         
         return user
+
+    def validate_password(self, value):
+
+        return make_password(value)
 
 
     # Borrar borrado logico
