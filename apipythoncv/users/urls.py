@@ -15,15 +15,17 @@ router.register(r'usuarios', UserViewSet, basename='usuarios')
 
 
 urlpatterns = [
+    # Rutas de usuario
     path('', include(router.urls)),
-    path('usuarios/create', CreateUserView.as_view()),
-    path('usuarios/edit', RetreiveUpdateUserView.as_view()),
-    path('usuarios/login', CreateTokenView.as_view()),
+    path('create', CreateUserView.as_view()),
+    path('edit', RetreiveUpdateUserView.as_view()),
+    path('login', CreateTokenView.as_view()),
     
-    path('usuarios/links/create', CreateLinkView.as_view()),
-    path('usuarios/resume/create', CreateResumeView.as_view()),
+    # Rutas de Links
+    path('links/create', CreateLinkView.as_view()),
+    path('resume/create', CreateResumeView.as_view()),
     
-    
-    path('usuarios/links/edit', RetrieveUpdateDestroyLinkView.as_view()),
-    path('usuarios/resume/edit', RetrieveUpdateDestroyResumeView.as_view())
+    # Rutas de Resumen
+    path('links/edit', RetrieveUpdateDestroyLinkView.as_view()),
+    path('resume/edit', RetrieveUpdateDestroyResumeView.as_view())
 ]
