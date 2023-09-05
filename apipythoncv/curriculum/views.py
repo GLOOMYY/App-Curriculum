@@ -1,4 +1,7 @@
-from rest_framework import generics, authentication, permissions
+from rest_framework import generics, authentication, permissions, filters, viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
+
 from .models import Stack, ProjectDev, EmploymentHistory, Academy, HobbiesExtras, Skills, Facts
 from .serializers import StackSerializer, ProjectDevSerializer, EmploymentHistorySerializer, AcademySerializer, HobbiesExtrasSerializer, SkillsSerializer, FactsSerializer
 
@@ -7,36 +10,58 @@ from .serializers import StackSerializer, ProjectDevSerializer, EmploymentHistor
 class StackListView(generics.ListAPIView):
   queryset = Stack.objects.all()
   serializer_class = StackSerializer
-  authentication_class = [authentication.TokenAuthentication]
+  filter_backends = [DjangoFilterBackend]
+  filterset_fields = ['name_stack']
+  # authentication_class = [authentication.TokenAuthentication]
 
 
 
-# class StackView(generics):
+class StackCreateView(generics.CreateAPIView):
+  serializer_class = StackSerializer
+
+
+class StackUpdateView(generics.RetrieveUpdateAPIView):
+  serializer_class = StackSerializer
+  authentication_classes = [authentication.TokenAuthentication]
+  permission_classes = [permissions.IsAuthenticated]
+  queryset = Stack.objects.all()
+  
+
+
+class StackDeleteView(generics.RetrieveDestroyAPIView):
+  serializer_class = StackSerializer
+  authentication_classes = [authentication.TokenAuthentication]
+  permissions_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+  queryset = Stack.objects.all()
+
+  def delete_object(self):
+    instance = self.get_object()
+    self.perform_destroy(instance)
+    return Response({
+      "message": "Stack deleted successfully"
+    })
 
 
 
-# class StackView(generics):
 
 
-
-# class StackView(generics):
-
-
+# Vistas de ProjectDev
 
 class ProjectDevListView(generics.ListAPIView):
-  authentication_class = [authentication.TokenAuthentication]
+  authentication_classes = [authentication.TokenAuthentication, authentication.SessionAuthentication]
   queryset = ProjectDev.objects.all()
   serializer_class = ProjectDevSerializer
   permission_classes = [permissions.IsAuthenticated]
   
-  def get_queryset(self):
-    user = self.request.user
-    queryset = super().get_queryset().filter(user = user)
-    return queryset
     
   
   
-# class ProjectDevView(generics):
+class ProjectDevCreateView(generics.CreateAPIView):
+  serializer_class = ProjectDevSerializer
+  permission_classes = [permissions.IsAuthenticated]
+  authentication_classes = [authentication.TokenAuthentication]
+
+
 # class ProjectDevView(generics):
 # class ProjectDevView(generics):
 

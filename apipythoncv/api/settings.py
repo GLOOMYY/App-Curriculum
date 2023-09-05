@@ -45,7 +45,8 @@ THIRD_PARTY_APPS = [
     #'corsheaders',
     'rest_framework',
     'ckeditor',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_filters'
 ]
 
 LOCAL_APPS = [
