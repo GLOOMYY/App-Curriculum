@@ -7,7 +7,7 @@ from .models import User, Links, ResumeUser
 
 # --------------- Vistas de Users ---------------
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(generics.ListAPIView):
   queryset = User.objects.all().order_by('id')
   serializer_class = UserSerializer
   

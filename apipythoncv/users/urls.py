@@ -16,6 +16,7 @@ router.register(r'usuarios', UserViewSet, basename='usuarios')
 
 urlpatterns = [
     # Rutas de usuario
+    path('list', UserViewSet.as_view()),
     path('create', CreateUserView.as_view()),
     path('edit', RetreiveUpdateUserView.as_view()),
     path('login', CreateTokenView.as_view()),

@@ -1,0 +1,16 @@
+asgiref
+dj-database-url
+Django==3.2.21
+django-ckeditor
+django-cors-headers
+django-filter
+django-js-asset
+djangorestframework
+Pillow
+psycopg2
+python-dotenv
+pytz
+sqlparse
+typing_extensions
+tzdata
+gunicorn

@@ -49,7 +49,7 @@ class User(AbstractUser, PermissionsMixin):
 
     type_id = models.CharField(verbose_name='Tipo de Identificación', max_length=50, choices=TYPE_ID)
     identification = models.CharField(verbose_name='Número de Identificación', max_length=50)
-    photo = models.ImageField(verbose_name='Foto de Perfil', upload_to='img/usuarios/')
+    photo = models.ImageField(verbose_name='Foto de Perfil', upload_to='img/usuarios/', null=True, blank=True)
     country = models.CharField(verbose_name='Pais de Residencia', max_length=255)
     city = models.CharField(verbose_name='Ciudad de Residencia', max_length=255)
     address = models.TextField(verbose_name='Direccion de Residencia')
